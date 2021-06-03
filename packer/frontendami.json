@@ -11,21 +11,21 @@
          "source_ami": "ami-03d5c68bab01f3496",
          "source_ami_filter": {
 	          "owners": ["099720109477"],
-              "most_recent": 
+              "most_recent": true
          },
          "instance_type": "t2.micro",
          "ssh_username": "ubuntu",
-         "ami_name": "fronted {{timestamp}}",
+         "ami_name": "fronted{{timestamp}}",
          "associate_public_ip_address": true
      }],
     "provisioners": [
         {
             "type": "shell",
             "inline": [
+                "sudo apt update -y",
                 "sudo apt install nodejs -y",
                 "sudo apt install build-essential -y",
                 "sudo npm install -g @angular/cli"
-
             ]
         }
     ]

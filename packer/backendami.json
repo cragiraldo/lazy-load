@@ -15,18 +15,34 @@
          },
          "instance_type": "t2.micro",
          "ssh_username": "ubuntu",
-         "ami_name": "backend {{timestamp}}",
+         "ami_name": "backend{{timestamp}}",
          "associate_public_ip_address": true
      }],
     "provisioners": [
+        {
+            "type":"shell",
+            "environment_vars": [
+                "DB_HOST=db_host",
+                "DB_PORT=db_port",
+                "DB_NAME=db_name",
+                "DB_USER=db_user",
+                "DB_PASS=db_pass"],
+            "inline":[
+                "echo \"DB_PORT is $DB_PORT\"",
+                "echo \"DB_PORT is $DB_PORT\"",
+                "echo \"DB_NAME is $DB_NAME\"",
+                "echo \"DB_USER is $DB_USER\"",
+                "echo \"DB_PASS is $DB_PASS\""
+            ]
+        },
         {
             "type": "shell",
             "inline":[
                 "sudo apt-get update -y",
                 "sudo apt-get install openjdk-8-jdk maven openjdk-11-jdk wget unzip -y",
-                "get https://services.gradle.org/distributions/gradle-${VERSION}-bin.zip -P /tmp",
-                "sudo unzip -d /opt/gradle /tmp/gradle-${VERSION}-bin.zip",
-                "sudo ln -s /opt/gradle/gradle-${VERSION} /opt/gradle/latest"
+                "wget https://services.gradle.org/distributions/gradle-6.5.1-bin.zip -P /tmp",
+                "sudo unzip -d /opt/gradle /tmp/gradle-6.5.1-bin.zip",
+                "sudo ln -s /opt/gradle/gradle-6.5.1 /opt/gradle/latest"
             ]
         }
 
