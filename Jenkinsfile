@@ -21,7 +21,7 @@ pipeline{
                 echo "========executing test========"
                 script{
                     dir("lazy-load-backend"){
-                        sh './gradlew test'
+                        sh './gradlew build test'
                     }
                 }
             }
