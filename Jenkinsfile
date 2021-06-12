@@ -1,7 +1,8 @@
 pipeline{
     parameters {
-        string(name: 'DB_HOST', defaultValue: 'terraform', description: 'Workspace/environment file to use for deployment')
-        booleanParam(name: 'autoApprove', defaultValue: false, description: 'Automatically run apply after generating plan?')
+        string(name: 'DB_HOST', defaultValue: 'ds029837.mlab.com', description: 'host of the application')
+        string(name: 'PORT', defaultValue:'29837', description: 'Port use to conect DB')
+        string(name: 'database', defaultValue: 'lazy_load_dev')
 
     }
     environment{
@@ -16,6 +17,17 @@ pipeline{
     }
 
     stages{
+        stage("create ami"){
+            steps{
+                echo "====++++executing create ami++++===="
+                script{
+                    dir("packer"){
+                        sh 'packer init'
+                        sh 'packer build aws-lazyapp.pkr.hcl'
+                    }
+                }
+            }
+        }
         stage("build"){
             steps{
                 echo "========executing build========"
