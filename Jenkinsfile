@@ -13,7 +13,7 @@ pipeline{
 
     tools{
         gradle 'Gradle-4.5.1'
-        terraform 'terraform'
+        terraform 'terraform0.15.4'
     }
 
     stages{
