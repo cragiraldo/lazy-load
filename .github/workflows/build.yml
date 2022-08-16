@@ -33,4 +33,6 @@ jobs:
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
       - name: Build and analyze
-        run: ./lazy-load-backend/gradlew build
+        run: |
+          cd lazy-load-backend
+          gradle build
