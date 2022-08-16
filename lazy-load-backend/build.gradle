@@ -70,3 +70,15 @@ bootRun {
 		classpath = files("$buildDir/classes/java/main", "$buildDir/resources/main", pathingJar.archivePath)
 	}
 }
+
+plugins {
+  id "org.sonarqube" version "3.4.0.2513"
+}
+
+sonarqube {
+  properties {
+    property "sonar.projectKey", "cragiraldo_lazy-load"
+    property "sonar.organization", "cragiraldo"
+    property "sonar.host.url", "https://sonarcloud.io"
+  }
+}
